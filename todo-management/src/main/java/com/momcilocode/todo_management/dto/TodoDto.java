@@ -1,25 +1,17 @@
-package com.momcilocode.todo_management.entity;
-
-import jakarta.persistence.*;
+package com.momcilocode.todo_management.dto;
 
 
 
-@Entity
-@Table(name = "todos")
-public class Todo {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class TodoDto {
     private Long id;
-    @Column(nullable = false)
     private String title;
-    @Column(nullable = false)
     private String description;
     private boolean completed;
 
-    public Todo() {
+    public TodoDto() {
     }
 
-    public Todo(Long id, String title, String description, boolean completed) {
+    public TodoDto(Long id, String title, String description, boolean completed) {
         this.id = id;
         this.title = title;
         this.description = description;
