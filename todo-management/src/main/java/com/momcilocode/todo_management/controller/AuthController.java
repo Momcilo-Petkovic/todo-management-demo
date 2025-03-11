@@ -1,5 +1,6 @@
 package com.momcilocode.todo_management.controller;
 
+import com.momcilocode.todo_management.dto.LoginDto;
 import com.momcilocode.todo_management.dto.RegisterDto;
 import com.momcilocode.todo_management.service.AuthService;
 import org.springframework.http.HttpStatus;
@@ -24,4 +25,12 @@ public class AuthController {
         String response = authService.  register(registerDto);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+
+    // Build Log In REST API
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginDto loginDto){
+        String response = authService.login(loginDto);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 }

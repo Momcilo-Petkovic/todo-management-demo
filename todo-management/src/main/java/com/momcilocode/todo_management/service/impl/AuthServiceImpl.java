@@ -1,5 +1,6 @@
 package com.momcilocode.todo_management.service.impl;
 
+import com.momcilocode.todo_management.dto.LoginDto;
 import com.momcilocode.todo_management.dto.RegisterDto;
 import com.momcilocode.todo_management.entity.Role;
 import com.momcilocode.todo_management.entity.User;
@@ -8,6 +9,11 @@ import com.momcilocode.todo_management.repository.RoleRepository;
 import com.momcilocode.todo_management.repository.UserRepository;
 import com.momcilocode.todo_management.service.AuthService;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +27,15 @@ public class AuthServiceImpl implements AuthService {
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
 
-    public AuthServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
+    private AuthenticationManager authenticationManager;
+
+    public AuthServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.authenticationManager = authenticationManager;
     }
+
 
     @Override
     public String register(RegisterDto registerDto){
@@ -59,6 +69,17 @@ public class AuthServiceImpl implements AuthService {
         return "User Registered Successfully!";
     }
 
+    @Override
+    public String login(LoginDto loginDto) {
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                loginDto.getUsernameOrEmail(),
+                loginDto.getPassword()
+        ));
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        return "User logged in seccessfully!";
+    }
 
 
 }
