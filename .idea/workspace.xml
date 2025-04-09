@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="1e37d103-0f2e-49e9-9ce5-ee80acf2f140" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo-management/src/main/java/com/momcilocode/todo_management/TodoManagementApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/todo-management/src/main/java/com/momcilocode/todo_management/TodoManagementApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo-management/src/main/java/com/momcilocode/todo_management/config/SpringSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/todo-management/src/main/java/com/momcilocode/todo_management/config/SpringSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo-management/src/main/java/com/momcilocode/todo_management/controller/TodoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/todo-management/src/main/java/com/momcilocode/todo_management/controller/TodoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo-management/src/main/java/com/momcilocode/todo_management/utils/PasswordEncoderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/todo-management/src/main/java/com/momcilocode/todo_management/utils/PasswordEncoderImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +51,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "F:/Programming/Todo Management System/todo-management-demo",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -98,6 +103,7 @@
       <workItem from="1741639418863" duration="2656000" />
       <workItem from="1741695913393" duration="9012000" />
       <workItem from="1743526832702" duration="778000" />
+      <workItem from="1744198093007" duration="5505000" />
     </task>
     <servers />
   </component>

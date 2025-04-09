@@ -35,6 +35,7 @@ public class SpringSecurityConfig {
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**").disable())  // Disable CSRF for API endpoints
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers(HttpMethod.GET, "/api/**").permitAll();
+                    auth.requestMatchers("/api/auth/register", "/api/auth/login").permitAll(); // Allow register and login
                     auth.anyRequest().authenticated();
                 })
                 .userDetailsService(userDetailsService)  // Set custom UserDetailsService
