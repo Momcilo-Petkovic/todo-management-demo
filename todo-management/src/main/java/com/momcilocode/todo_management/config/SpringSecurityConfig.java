@@ -11,7 +11,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import java.util.Arrays;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @EnableMethodSecurity
@@ -32,14 +35,16 @@ public class SpringSecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**").disable())  // Disable CSRF for API endpoints
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**").disable())
+                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Add this CORS configuration
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers(HttpMethod.GET, "/api/**").permitAll();
-                    auth.requestMatchers("/api/auth/register", "/api/auth/login").permitAll(); // Allow register and login
+                    auth.requestMatchers(HttpMethod.OPTIONS, "/api/**").permitAll(); // Allow OPTIONS for all /api/**
+                    auth.requestMatchers("/api/auth/register", "/api/auth/login").permitAll();
                     auth.anyRequest().authenticated();
                 })
-                .userDetailsService(userDetailsService)  // Set custom UserDetailsService
-                .httpBasic(withDefaults());  // Enable HTTP Basic authentication
+                .userDetailsService(userDetailsService)
+                .httpBasic(withDefaults());
 
         return http.build();
     }
@@ -47,5 +52,19 @@ public class SpringSecurityConfig {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
+    }
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // Allow your React app
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")); // Allow all methods
+        configuration.setAllowedHeaders(Arrays.asList("Content-Type", "Authorization")); // Allow specific headers
+        configuration.setAllowCredentials(true); // Allow sending credentials (cookies, auth headers)
+        configuration.setMaxAge(3600L); // Cache preflight response for 1 hour
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/api/**", configuration); // Apply to all /api/** endpoints
+        return source;
     }
 }
