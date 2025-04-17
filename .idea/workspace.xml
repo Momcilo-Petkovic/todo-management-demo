@@ -7,10 +7,10 @@
     <list default="true" id="1e37d103-0f2e-49e9-9ce5-ee80acf2f140" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-workspace/todo-ui/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/react-workspace/todo-ui/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-workspace/todo-ui/src/components/ListTodoComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/react-workspace/todo-ui/src/components/ListTodoComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-workspace/todo-ui/src/components/HeaderComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/react-workspace/todo-ui/src/components/HeaderComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-workspace/todo-ui/src/services/AuthService.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-workspace/todo-ui/src/services/AuthService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-workspace/todo-ui/src/services/TodoService.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-workspace/todo-ui/src/services/TodoService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/todo-management/src/main/java/com/momcilocode/todo_management/config/SpringSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/todo-management/src/main/java/com/momcilocode/todo_management/config/SpringSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo-management/src/main/java/com/momcilocode/todo_management/controller/TodoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/todo-management/src/main/java/com/momcilocode/todo_management/controller/TodoController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +106,8 @@
       <workItem from="1743526832702" duration="778000" />
       <workItem from="1744198093007" duration="9160000" />
       <workItem from="1744291964452" duration="1090000" />
-      <workItem from="1744810979522" duration="1202000" />
+      <workItem from="1744810979522" duration="1812000" />
+      <workItem from="1744898417674" duration="5714000" />
     </task>
     <servers />
   </component>

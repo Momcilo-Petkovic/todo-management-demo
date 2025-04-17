@@ -38,9 +38,10 @@ public class SpringSecurityConfig {
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**").disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Add this CORS configuration
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers(HttpMethod.GET, "/api/**").permitAll();
-                    auth.requestMatchers(HttpMethod.OPTIONS, "/api/**").permitAll(); // Allow OPTIONS for all /api/**
                     auth.requestMatchers("/api/auth/register", "/api/auth/login").permitAll();
+                    auth.requestMatchers(HttpMethod.OPTIONS, "/api/**").permitAll(); // Allow OPTIONS for all /api/**
+                    auth.requestMatchers("/api/todos/**").authenticated(); // Secure all /api/todos endpoints
+                    auth.requestMatchers(HttpMethod.GET, "/api/**").permitAll(); // Keep this for other potential public GETs under /api/, be specific if possible
                     auth.anyRequest().authenticated();
                 })
                 .userDetailsService(userDetailsService)
