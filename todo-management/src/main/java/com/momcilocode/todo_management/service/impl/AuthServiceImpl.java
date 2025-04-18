@@ -7,6 +7,7 @@ import com.momcilocode.todo_management.entity.User;
 import com.momcilocode.todo_management.exception.TodoAPIException;
 import com.momcilocode.todo_management.repository.RoleRepository;
 import com.momcilocode.todo_management.repository.UserRepository;
+import com.momcilocode.todo_management.security.JwtTokenProvider;
 import com.momcilocode.todo_management.service.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,16 +27,16 @@ public class AuthServiceImpl implements AuthService {
     private UserRepository userRepository;
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
-
     private AuthenticationManager authenticationManager;
+    private JwtTokenProvider jwtTokenProvider;
 
-    public AuthServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager) {
+    public AuthServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
+        this.jwtTokenProvider = jwtTokenProvider;
     }
-
 
     @Override
     public String register(RegisterDto registerDto){
@@ -78,7 +79,9 @@ public class AuthServiceImpl implements AuthService {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return "User logged in seccessfully!";
+        String token = jwtTokenProvider.generateToken(authentication);
+
+        return token;
     }
 
 

@@ -1,5 +1,6 @@
 package com.momcilocode.todo_management.controller;
 
+import com.momcilocode.todo_management.dto.JwtAuthResponse;
 import com.momcilocode.todo_management.dto.LoginDto;
 import com.momcilocode.todo_management.dto.RegisterDto;
 import com.momcilocode.todo_management.service.AuthService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+
     private AuthService authService;
 
     public AuthController(AuthService authService) {
@@ -22,15 +24,18 @@ public class AuthController {
     // Build Register REST API
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody RegisterDto registerDto){
-        String response = authService.  register(registerDto);
+        String response = authService.register(registerDto);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     // Build Log In REST API
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginDto loginDto){
-        String response = authService.login(loginDto);
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
+    public ResponseEntity<JwtAuthResponse> login(@RequestBody LoginDto loginDto){
+        String token = authService.login(loginDto);
 
+        JwtAuthResponse jwtAuthResponse = new JwtAuthResponse();
+        jwtAuthResponse.setAccessToken(token);
+
+        return new ResponseEntity<>(jwtAuthResponse, HttpStatus.OK);
+    }
 }
